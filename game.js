@@ -568,7 +568,17 @@ maze.initMap();
 setInterval(maze.makeMaze, 1000 / 60);
 document.addEventListener('keydown', maze.move);
 
-leftKeyButton.addEventListener('click', maze.moveLeft);
-topKeyButton.addEventListener('click', maze.moveUp);
-bottomKeyButton.addEventListener('click', maze.moveDown);
-rightKeyButton.addEventListener('click', maze.moveRight);
+leftKeyButton.addEventListener('click', () => {
+    maze.move({key: 'a'});
+});
+
+topKeyButton.addEventListener('click', () => {
+    maze.move({key: 'w'});
+});
+
+bottomKeyButton.addEventListener('click', () => {
+    maze.move({key: 's'});
+});
+rightKeyButton.addEventListener('click', () => {
+    maze.move({key: 'd'});
+});
