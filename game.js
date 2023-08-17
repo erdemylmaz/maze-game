@@ -15,7 +15,7 @@ let bottomKeyButton = document.querySelector('.s-key');
 let rightKeyButton = document.querySelector('.d-key');
 
 class Maze {
-    widePixel = 16;
+    widePixel = 20;
     totalMovementCount = 0;
 
     startRow = 0;
