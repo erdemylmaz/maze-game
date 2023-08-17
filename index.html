@@ -7,9 +7,36 @@
     <title>Maze Game</title>
 </head>
 <body>
+    <div class="alert-div">
+        <div class="alert-box">
+            <div class="alert-text">Please wait while your unique maze is being prepared</div>
+        </div>
+    </div>
+
+    <div class="end-modal">
+        <div class="end-box">
+            <div class="end-game-text">Game Over!</div>
+        </div>
+    </div>
 
     <div class="container">
-        <div class="maze-area"></div>
+        <div class="current-count-div">Current Movement Count: <span class="movement-count">0</span></div>
+        <div class="maze-area">
+            <div class="player-div"></div>
+            <div class="finish-line"></div>
+        </div>
+    </div>
+
+    <div class="controller-area">
+        <div class="controller-top">
+            <div class="key w-key">↑</div>
+        </div>
+
+        <div class="controller-bottom">
+            <div class="key a-key">←</div>
+            <div class="key s-key">↓</div>
+            <div class="key d-key">→</div>
+        </div>
     </div>
     
 <script src="game.js" type="module"></script>
