@@ -15,7 +15,7 @@ let bottomKeyButton = document.querySelector('.s-key');
 let rightKeyButton = document.querySelector('.d-key');
 
 class Maze {
-    widePixel = 16;
+    widePixel = 20;
     totalMovementCount = 0;
 
     startRow = 0;
@@ -325,6 +325,8 @@ class Maze {
                 this.isCompleted = true;
 
                 alertDiv.style.display = "none";
+
+                this.moveLeft();
             }
 
         }
@@ -539,6 +541,22 @@ class Maze {
             }
 
             movementCountSpan.textContent = this.totalMovementCount;
+
+
+            blocks.forEach((block) => {
+                let row = parseInt(block.dataset.row);
+                let col = parseInt(block.dataset.col);
+
+                let distance = Math.sqrt(Math.pow(Math.abs(this.playerRow - row), 2) + Math.pow(Math.abs(this.playerCol - col), 2));
+
+                let brightness = 1 - 0.4 * distance;
+
+                if(brightness < 0) {
+                    brightness = 0;
+                }
+
+                block.style.filter = `brightness(${brightness})`
+            });
         }
     }
 }
