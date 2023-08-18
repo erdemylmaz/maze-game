@@ -60,9 +60,10 @@ body {
     height: 17px;
     background-color: rgb(97, 255, 73);
     bottom: 1px;
-    filter: opacity(0);
     right: 1px;
     transition: 1s;
+    filter: opacity(0);
+    z-index: 2;
 }
 
 @keyframes wrongAnimation {

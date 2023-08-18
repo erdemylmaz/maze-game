@@ -21,6 +21,9 @@ class Maze {
     startRow = 0;
     startCol = 0;
 
+    finishRow = null;
+    finishCol = null;
+
     currentRow = this.startRow;
     currentCol = this.startCol;
 
@@ -326,7 +329,7 @@ class Maze {
 
                 alertDiv.style.display = "none";
 
-                this.moveLeft();
+                this.initFinish();
             }
 
         }
@@ -369,7 +372,7 @@ class Maze {
                 playerDIV.style.left = `${nextBlocksLeft + 4}px`;
                 this.totalMovementCount++;
 
-                if(this.playerCol == this.widePixel - 1 && this.playerRow == this.widePixel - 1) {
+                if(this.playerCol == this.finishCol && this.playerRow == this.finishRow) {
                     this.endGame();
                 }
 
@@ -414,7 +417,7 @@ class Maze {
                 playerDIV.style.left = `${nextBlocksLeft + 4}px`;
                 this.totalMovementCount++;
 
-                if(this.playerCol == this.widePixel - 1 && this.playerRow == this.widePixel - 1) {
+                if(this.playerCol == this.finishCol && this.playerRow == this.finishRow) {
                     this.endGame();
                 }
 
@@ -457,7 +460,7 @@ class Maze {
                 playerDIV.style.left = `${nextBlocksLeft + 4}px`;
                 this.totalMovementCount++;
 
-                if(this.playerCol == this.widePixel - 1 && this.playerRow == this.widePixel - 1) {
+                if(this.playerCol == this.finishCol && this.playerRow == this.finishRow) {
                     this.endGame();
                 }
 
@@ -502,7 +505,7 @@ class Maze {
                 playerDIV.style.left = `${nextBlocksLeft + 4}px`;
                 this.totalMovementCount++;
 
-                if(this.playerCol == this.widePixel - 1 && this.playerRow == this.widePixel - 1) {
+                if(this.playerCol == this.finishCol && this.playerRow == this.finishRow) {
                     this.endGame();
                 }
 
@@ -549,15 +552,38 @@ class Maze {
 
                 let distance = Math.sqrt(Math.pow(Math.abs(this.playerRow - row), 2) + Math.pow(Math.abs(this.playerCol - col), 2));
 
+                let finishDistance = Math.sqrt(Math.pow(Math.abs(this.playerCol - this.finishCol), 2) + Math.pow(Math.abs(this.playerRow - this.finishRow), 2));
+
                 let brightness = 1 - 0.4 * distance;
+                let finishBrightness = 1 - 0.4 * finishDistance;
 
                 if(brightness < 0) {
                     brightness = 0;
                 }
 
+                if(finishBrightness < 0) {
+                    finishBrightness = 0;
+                }
+
                 block.style.filter = `brightness(${brightness})`
+                finishLine.style.filter = `brightness(${finishBrightness})`;
             });
         }
+    }
+
+    initFinish = () => {
+        this.finishCol = Math.floor(Math.random() * this.widePixel);
+        this.finishRow = Math.floor(Math.random() * this.widePixel);
+
+        blocks.forEach((block) => {
+            if(block.dataset.row == this.finishRow && block.dataset.col == this.finishCol) {
+                let top = block.offsetTop;
+                let left = block.offsetLeft;
+
+                finishLine.style.top = `${top + 1}px`;
+                finishLine.style.left = `${left + 1}px`;
+            }
+        });
     }
 }
 
